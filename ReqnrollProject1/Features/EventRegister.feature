@@ -1,4 +1,5 @@
-﻿Feature: EventRegistration
+﻿@smoke
+Feature: EventRegistration
 
 A short summary of the feature
 
