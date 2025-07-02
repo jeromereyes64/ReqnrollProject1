@@ -17,12 +17,12 @@ namespace ReqnrollProject.Pages
         private IWebElement userNameField => _driver.FindElement(By.XPath("//input[@id='user-name']"));
         private IWebElement passwordField => _driver.FindElement(By.XPath("//input[@id='password']"));
         private IWebElement loginButton => _driver.FindElement(By.XPath("//input[@id='login-button']"));
-        private IWebElement headerText => _driver.FindElement(By.XPath("//div[text()='Swag Labs']"));
+        public IWebElement headerText => _driver.FindElement(By.XPath("//div[text()='Swag Labs']"));
 
         // Navigate to the login page URL
         public void GoToLoginPage()
         {
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/");
+            _driver.Navigate().GoToUrl(TestData.Users.URL);
         }
 
         public void EnterUsername(string username)
@@ -42,17 +42,14 @@ namespace ReqnrollProject.Pages
             Common.Click(loginButton);
         }
 
-        public bool IsDashboardDisplayed()
+        public void PerformLogin(string username = "", string password = "")
         {
-            // Check if dashboard header is present
-            try
-            {
-                return headerText.Displayed;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
+            GoToLoginPage();
+            EnterUsername(username);
+            EnterPassword(password);
+            ClickLogin();
+            AssertHelper.ShouldBeVisible(headerText);
         }
+
     }
 }

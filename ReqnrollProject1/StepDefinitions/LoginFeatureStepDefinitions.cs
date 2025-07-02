@@ -1,6 +1,7 @@
 using Reqnroll;
 using ReqnrollProject.Pages;
 using FluentAssertions;
+using ReqnrollProject.Utils;
 
 namespace ReqnrollProject.StepDefinitions
 {
@@ -24,8 +25,8 @@ namespace ReqnrollProject.StepDefinitions
         [When("I enter username and password")]
         public void WhenIEnterUsernameAndPassword()
         {
-            _loginPage.EnterUsername("standard_user");           // replace with your test data
-            _loginPage.EnterPassword("secret_sauce");     // replace with your test data
+            _loginPage.EnterUsername(TestData.Users.StandardUser);           // replace with your test data
+            _loginPage.EnterPassword(TestData.Users.StandardPassword);     // replace with your test data
         }
 
         [When("I click the sign in button")]
@@ -37,7 +38,7 @@ namespace ReqnrollProject.StepDefinitions
         [Then("I should be redirected to the home page")]
         public void ThenIShouldBeRedirectedToTheHomePage()
         {
-            _loginPage.IsDashboardDisplayed().Should().BeTrue("the user should be redirected to the home page");
+            AssertHelper.ShouldBeVisible(_loginPage.headerText);
         }
     }
 }
