@@ -18,10 +18,10 @@ namespace ReqnrollProject1.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EventRegistration")]
+    [NUnit.Framework.DescriptionAttribute("Sauce Labs Login and Checkout")]
     [NUnit.Framework.FixtureLifeCycleAttribute(NUnit.Framework.LifeCycle.InstancePerTestCase)]
     [NUnit.Framework.CategoryAttribute("smoke")]
-    public partial class EventRegistrationFeature
+    public partial class SauceLabsLoginAndCheckoutFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
@@ -29,9 +29,10 @@ namespace ReqnrollProject1.Features
         private static string[] featureTags = new string[] {
                 "smoke"};
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en"), "Features", "EventRegistration", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en"), "Features", "Sauce Labs Login and Checkout", "  As a standard user\r\n  I want to log in, add an item to cart, and complete check" +
+                "out\r\n  So that I can verify the end-to-end eCommerce flow", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
-#line 1 "EventRegister.feature"
+#line 1 "CheckoutItem.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -104,28 +105,24 @@ namespace ReqnrollProject1.Features
             await testRunner.CollectScenarioErrorsAsync();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register event with valid information")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
-        [NUnit.Framework.TestCaseAttribute("John Doe", "jerome@test.com", "30", null)]
-        [NUnit.Framework.TestCaseAttribute("Jane Smith", "jane@test.com", "25", null)]
-        [NUnit.Framework.TestCaseAttribute("Alice", "alice@test.com", "22", null)]
-        public async global::System.Threading.Tasks.Task RegisterEventWithValidInformation(string name, string email, string age, string[] exampleTags)
+        public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-            string[] @__tags = new string[] {
-                    "tag1"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("name", name);
-            argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("age", age);
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Register event with valid information", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
-this.ScenarioInitialize(scenarioInfo);
+ #line hidden
+#line 8
+  await testRunner.GivenAsync("I am signed in as a standard user", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add item to cart and complete checkout")]
+        public async global::System.Threading.Tasks.Task AddItemToCartAndCompleteCheckout()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add item to cart and complete checkout", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 10
+  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -134,20 +131,27 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 8
- await testRunner.GivenAsync("I am on the registration page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 9
- await testRunner.WhenAsync(string.Format("I enter my name as {0}", name), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 10
- await testRunner.WhenAsync(string.Format("I enter my email as {0}", email), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line 7
+ await this.FeatureBackgroundAsync();
 #line hidden
 #line 11
- await testRunner.WhenAsync(string.Format("I enter my age as {0}", age), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("I add the first item to the cart", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 12
- await testRunner.ThenAsync("I verify successful registration", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.AndAsync("I go to the cart page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 13
+    await testRunner.AndAsync("I proceed to checkout", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 14
+    await testRunner.AndAsync("I fill in checkout details with first name \"Jerome\", last name \"Reyes\", and posta" +
+                        "l code \"1000\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 15
+    await testRunner.AndAsync("I complete the order", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 16
+    await testRunner.ThenAsync("I should see the confirmation message \"Thank you for your order!\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

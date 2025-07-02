@@ -11,5 +11,12 @@
             public static string URL => "https://www.saucedemo.com/";
 
         }
+
+        public static class CheckoutDetails
+        {
+            public static string FirstName => "Jerome";
+            public static string LastName => "Test";
+            public static string PostalCode => "P2";
+        }
     }
 }
