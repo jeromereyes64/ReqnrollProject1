@@ -52,11 +52,5 @@ namespace ReqnrollProject.Utils
                 throw;
             }
         }
-
-        public static void Pause(int seconds)
-        {
-            Console.WriteLine($"[WAIT] Pausing for {seconds} second(s)...");
-            Thread.Sleep(seconds * 1000);
-        }
     }
 }

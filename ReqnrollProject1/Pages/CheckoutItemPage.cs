@@ -51,7 +51,6 @@ namespace ReqnrollProject1.Pages
             Common.Clear(postalCodeField);
             Common.SendKeys(postalCodeField, postalCode);
             Common.Click(continueButton);
-            Common.Pause(1); // Wait for the next page to load
         }
 
         public void CompleteOrder()
